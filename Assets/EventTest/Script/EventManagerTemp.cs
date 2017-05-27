@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EventManagerTemp
 {
-    static Dictionary<EventType, Delegate> _eventMap = new Dictionary<EventType, Delegate>();
-    public static void Regist(EventType eventType, Delegate callback)
+    static Dictionary<EventTypes, Delegate> _eventMap = new Dictionary<EventTypes, Delegate>();
+    public static void Regist(EventTypes eventType, Delegate callback)
     {
         if (_eventMap.ContainsKey(eventType))
         {
@@ -18,7 +18,7 @@ public class EventManagerTemp
         }
     }
 
-    public static void UnRegist(EventType eventType, Delegate callback)
+    public static void UnRegist(EventTypes eventType, Delegate callback)
     {
         if (!_eventMap.ContainsKey(eventType))
             return;
@@ -29,7 +29,7 @@ public class EventManagerTemp
 
 
     #region send
-    public static void Send(EventType eventType)
+    public static void Send(EventTypes eventType)
     {
         Delegate d;
         if (!_eventMap.TryGetValue(eventType, out d))
@@ -46,7 +46,7 @@ public class EventManagerTemp
         }
     }
 
-    public static void Send<T>(EventType eventType, T arg1)
+    public static void Send<T>(EventTypes eventType, T arg1)
     {
         Delegate d;
         if (!_eventMap.TryGetValue(eventType, out d))
@@ -63,7 +63,7 @@ public class EventManagerTemp
         }
     }
 
-    public static void Send<T, U>(EventType eventType, T arg1, U arg2)
+    public static void Send<T, U>(EventTypes eventType, T arg1, U arg2)
     {
         Delegate d;
         if (!_eventMap.TryGetValue(eventType, out d))
@@ -81,7 +81,7 @@ public class EventManagerTemp
     }
 
 
-    public static void Send<T, U, V>(EventType eventType, T arg1, U arg2, V arg3)
+    public static void Send<T, U, V>(EventTypes eventType, T arg1, U arg2, V arg3)
     {
         Delegate d;
         if (!_eventMap.TryGetValue(eventType, out d))
@@ -98,7 +98,7 @@ public class EventManagerTemp
         }
     }
 
-    public static void Send<T, U, V, W>(EventType eventType, T arg1, U arg2, V arg3, W arg4)
+    public static void Send<T, U, V, W>(EventTypes eventType, T arg1, U arg2, V arg3, W arg4)
     {
         Delegate d;
         if (!_eventMap.TryGetValue(eventType, out d))
@@ -117,29 +117,29 @@ public class EventManagerTemp
     #endregion
 
     #region regist
-    public static  void Regist(EventType eventType, Action handler)
+    public static  void Regist(EventTypes eventType, Action handler)
     {
         if(CheckAddCallback(eventType, handler))
             _eventMap[eventType] = (Action)_eventMap[eventType] + handler;
     }
 
-    public static void Regist<T>(EventType eventType, Action<T> handler)
+    public static void Regist<T>(EventTypes eventType, Action<T> handler)
     {
         if (CheckAddCallback(eventType, handler))
             _eventMap[eventType] = (Action<T>)_eventMap[eventType] + handler;
     }
-    public static void Regist<T, U>(EventType eventType, Action<T, U> handler)
+    public static void Regist<T, U>(EventTypes eventType, Action<T, U> handler)
     {
         if (CheckAddCallback(eventType, handler))
             _eventMap[eventType] = (Action<T, U>)_eventMap[eventType] + handler;
     }
-    public static void Regist<T, U, V>(EventType eventType, Action<T, U, V> handler)
+    public static void Regist<T, U, V>(EventTypes eventType, Action<T, U, V> handler)
     {
         if (CheckAddCallback(eventType, handler))
             _eventMap[eventType] = (Action<T, U, V>)_eventMap[eventType] + handler;
     }
 
-    public static void Regist<T, U, V, W>(EventType eventType, Action<T, U, V, W> handler)
+    public static void Regist<T, U, V, W>(EventTypes eventType, Action<T, U, V, W> handler)
     {
         if (CheckAddCallback(eventType, handler))
             _eventMap[eventType] = (Action<T, U, V, W>)_eventMap[eventType] + handler;
@@ -148,7 +148,7 @@ public class EventManagerTemp
     #endregion
 
     #region unregist
-    public static void UnRegist(EventType eventType, Action handler)
+    public static void UnRegist(EventTypes eventType, Action handler)
     {
         if (CheckRemoveCallback(eventType, handler))
         {
@@ -158,7 +158,7 @@ public class EventManagerTemp
         }
     }
 
-    public static void UnRegist<T>(EventType eventType, Action<T> handler)
+    public static void UnRegist<T>(EventTypes eventType, Action<T> handler)
     {
         if (CheckRemoveCallback(eventType, handler))
         {
@@ -168,7 +168,7 @@ public class EventManagerTemp
         }
     }
 
-    public static void UnRegist<T, U>(EventType eventType, Action<T, U> handler)
+    public static void UnRegist<T, U>(EventTypes eventType, Action<T, U> handler)
     {
         if (CheckRemoveCallback(eventType, handler))
         {
@@ -178,7 +178,7 @@ public class EventManagerTemp
         }
     }
 
-    public static void UnRegist<T, U, V>(EventType eventType, Action<T, U, V> handler)
+    public static void UnRegist<T, U, V>(EventTypes eventType, Action<T, U, V> handler)
     {
         if (CheckRemoveCallback(eventType, handler))
         {
@@ -189,7 +189,7 @@ public class EventManagerTemp
     }
 
 
-    public static void UnRegist<T, U, V, W>(EventType eventType, Action<T, U, V, W> handler)
+    public static void UnRegist<T, U, V, W>(EventTypes eventType, Action<T, U, V, W> handler)
     {
         if (CheckRemoveCallback(eventType, handler))
         {
@@ -204,7 +204,7 @@ public class EventManagerTemp
 
     #endregion
 
-    private static bool CheckAddCallback(EventType eventType, Delegate callback)
+    private static bool CheckAddCallback(EventTypes eventType, Delegate callback)
     {
         if (!_eventMap.ContainsKey(eventType))
         {
@@ -223,7 +223,7 @@ public class EventManagerTemp
     }
 
 
-    private static bool CheckRemoveCallback(EventType eventType, Delegate callback)
+    private static bool CheckRemoveCallback(EventTypes eventType, Delegate callback)
     {
         if (!_eventMap.ContainsKey(eventType))
         {

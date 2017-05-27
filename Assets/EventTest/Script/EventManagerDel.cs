@@ -4,8 +4,8 @@ using System;
 
 public class EventManagerDel
 {
-    static Dictionary<EventType, Delegate> _eventMap = new Dictionary<EventType, Delegate>();
-    public static void Regist(EventType eventType, Delegate callback)
+    static Dictionary<EventTypes, Delegate> _eventMap = new Dictionary<EventTypes, Delegate>();
+    public static void Regist(EventTypes eventType, Delegate callback)
     {
         if (_eventMap.ContainsKey(eventType))
         {
@@ -17,7 +17,7 @@ public class EventManagerDel
         }
     }
 
-    public static void UnRegist(EventType eventType, Delegate callback)
+    public static void UnRegist(EventTypes eventType, Delegate callback)
     {
         if (!_eventMap.ContainsKey(eventType))
             return;
@@ -26,7 +26,7 @@ public class EventManagerDel
             _eventMap.Remove(eventType);
     }
 
-    public static void Send(EventType eventType, params object[] objs)
+    public static void Send(EventTypes eventType, params object[] objs)
     {
         if (_eventMap.ContainsKey(eventType))
         {

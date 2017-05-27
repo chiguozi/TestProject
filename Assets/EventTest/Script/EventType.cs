@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EventType
+public enum EventTypes
 {
     None = 0,
     First = 1,

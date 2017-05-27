@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class EventManagerObjs
 {
-    static Dictionary<EventType, Action<object[]>> _eventMap = new Dictionary<EventType, Action<object[]>>();
-    public static void Regist(EventType eventType, Action<object[]> callback)
+    static Dictionary<EventTypes, Action<object[]>> _eventMap = new Dictionary<EventTypes, Action<object[]>>();
+    public static void Regist(EventTypes eventType, Action<object[]> callback)
     {
         if (_eventMap.ContainsKey(eventType))
         {
@@ -16,7 +16,7 @@ public class EventManagerObjs
         }
     }
 
-    public static void UnRegist(EventType eventType, Action<object[]> callback)
+    public static void UnRegist(EventTypes eventType, Action<object[]> callback)
     {
         if (!_eventMap.ContainsKey(eventType))
             return;
@@ -25,7 +25,7 @@ public class EventManagerObjs
             _eventMap.Remove(eventType);
     }
 
-    public static void Send(EventType eventType, params object[] objs)
+    public static void Send(EventTypes eventType, params object[] objs)
     {
         if (_eventMap.ContainsKey(eventType))
         {

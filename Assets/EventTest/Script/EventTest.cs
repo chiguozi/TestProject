@@ -8,26 +8,26 @@ public class EventTest : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        EventManagerObjs.Regist(EventType.First, OnObjsEvent);
-        EventManagerDel.Regist(EventType.First, (Action < string, string>) OnDelEvent);
-        EventManagerTemp.Regist<string, string>(EventType.First, OnTempEvet);
+        EventManagerObjs.Regist(EventTypes.First, OnObjsEvent);
+        EventManagerDel.Regist(EventTypes.First, (Action < string, string>) OnDelEvent);
+        EventManagerTemp.Regist<string, string>(EventTypes.First, OnTempEvet);
 
         var time = Time.realtimeSinceStartup;
         for(int i = 0; i  < 10000; i ++)
         {
-            EventManagerObjs.Send(EventType.First, "1", "1");
+            EventManagerObjs.Send(EventTypes.First, "1", "1");
         }
         Debug.LogError(Time.realtimeSinceStartup - time);
         time = Time.realtimeSinceStartup;
         for (int i = 0; i < 10000; i++)
         {
-            EventManagerDel.Send(EventType.First, "1", "1");
+            EventManagerDel.Send(EventTypes.First, "1", "1");
         }
         Debug.LogError(Time.realtimeSinceStartup - time);
         time = Time.realtimeSinceStartup;
         for (int i = 0; i < 10000; i++)
         {
-            EventManagerTemp.Send(EventType.First, "1", "1");
+            EventManagerTemp.Send(EventTypes.First, "1", "1");
         }
         Debug.LogError(Time.realtimeSinceStartup - time);
     }
